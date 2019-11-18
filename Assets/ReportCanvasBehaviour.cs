@@ -15,7 +15,6 @@ public class ReportCanvasBehaviour : MonoBehaviour
         timePlayed.text = Spire.timePlayed.ToString("F0") + " Seconds";
         runeStoneEarned.text = FindObjectOfType<ResourceManager>().AmountsEarned[1].ToString();
         coinEarned.text = FindObjectOfType<ResourceManager>().ResourceAmounts[0].ToString();
-        FindObjectOfType<ResourceManager>().RegisterEarned();
         Spire.timePlayed = 0f;
         MobSpawn.killCount = 0;
         

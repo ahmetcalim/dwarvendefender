@@ -25,8 +25,6 @@ public class ResourceManager : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-       
-        // Highlander.
         DontDestroyOnLoad(this);
         if (!resourceManager)
         {
@@ -52,30 +50,8 @@ public class ResourceManager : MonoBehaviour
             Debug.Log("COMBOTRACKERYOK");
         }
         MobSpawn.killCount++;
-        // Debug.Log(MobSpawn.killCount + ". Goblin Öldürüldü");
         AmountsEarned[0] += 1;
         
-    }
-
- 
-    public void RegisterEarned() // Will be called once player confirms earnings.
-    {
-        for(int i = 0; i < AmountsEarned.Length; i++)
-        {
-            ResourceAmounts[i] += AmountsEarned[i]; // Add amounts earned to available resources.
-            AmountsEarned[i] = 0; // Clear out for next instance.
-        }
-    }
-    public void GenerateEarningReport() // Will be called once the player finishes the instance.
-    {
-        string s;
-        for (int i = 0; i < AmountsEarned.Length; i++)
-        {
-            // ResourceName: 1000 + 150 = 1150
-            //s = ResourceNames[i] + ": " + ResourceAmounts[i].ToString() + " + " + AmountsEarned[i].ToString() + " = " + (ResourceAmounts[i] + AmountsEarned[i]).ToString(); // Setting up the format.
-            s = AmountsEarned[i].ToString();
-            EarningDisplays[i].text = s; // Displaying.
-        }
     }
 }
 public enum ResourceTypes
