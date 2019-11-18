@@ -11,7 +11,4 @@ public class WeaponDisplayData : MonoBehaviour
     public string WeaponDescription;
     public float WeaponDamage;
     public float WeaponReach;
-    public string[] UpgradeDescriptions = new string[6];
-    public Sprite[] UpgradeIcons = new Sprite[6];
-    public Upgrade[] Upgrades;
 }

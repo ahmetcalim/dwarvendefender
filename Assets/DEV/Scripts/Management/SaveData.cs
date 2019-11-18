@@ -18,22 +18,16 @@ public class SaveData
     {
         ResourceManager rm = ResourceManager.resourceManager;
         CampaignManager cm = CampaignManager.campaignManager;
-        UpgradeManager um = UpgradeManager.upgradeManager;
 
-       if (!rm || !cm || !um) return;
+
+
 
         Resources = rm.ResourceAmounts;
 
         InstancesWon = cm.InstanceWon;
         InstancesUnlocked = cm.InstanceUnlocked;
         UnlockedEntries = cm.UnlockedEntries;
-
-        UpgradeLevels = new int[um.Upgrades.Length];
-        for(int i = 0; i < UpgradeLevels.Length; i++)
-        {
-            UpgradeLevels[i] = um.Upgrades[i].UpgradeLevel;
-        }
-        WeaponUnlocks = um.WeaponUnlocks;
+        
 
         string json = JsonUtility.ToJson(this, true);
         if (File.Exists(path))

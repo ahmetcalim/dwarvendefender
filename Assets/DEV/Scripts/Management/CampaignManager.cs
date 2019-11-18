@@ -150,11 +150,6 @@ public class CampaignManager : MonoBehaviour
                 buttons[i].onClick.AddListener(delegate { SelectScene(j); });
             }
 
-            if (UpgradeManager.upgradeManager)
-            {
-                UpgradeManager.upgradeManager.SceneWeapons = FindObjectsOfType<Weapon>();
-                UpgradeManager.upgradeManager.CheckWeaponUnlocks();
-            }
         }
         else
         {

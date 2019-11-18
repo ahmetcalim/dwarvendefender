@@ -23,8 +23,7 @@ public class Weapon : MonoBehaviour
     public int DamageLevelIndex;
     public float speed;
     public int upgradeIndex;
-    public Skill[] Skills = new Skill[3]; // Initialize these specifically with FindObjectOfType<SkillName>()
-    public Upgrade[] Upgrades = new Upgrade[6]; // Initialize with UpgradeManager.upgradeManager.GetUpgradesByIndex(typeIndex)
+    
     public bool WeaponUnlocked = true;
     public int WeaponCost = 500;
     public Texture WeaponSprite;
