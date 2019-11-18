@@ -17,7 +17,6 @@ public class AI : MonoBehaviour
     public int percentageOfBeingRunner;
     public int percentageOfBeingChampion;
     public Vector3 HeadOffset = new Vector3(0, 1, 0);
-    public bool puppetmastertest;
     private void OnEnable()
     {
         if (!mobClass)
