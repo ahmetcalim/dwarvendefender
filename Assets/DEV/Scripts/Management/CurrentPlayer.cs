@@ -9,6 +9,13 @@ public class CurrentPlayer : MonoBehaviour
     public int[] orbs;
     public int[] weapons;
 
+    private void Start()
+    {
+        if (DataSystem.PlayerExist())
+        {
+            LoadPlayer();
+        }
+    }
     public void SavePlayer()
     {
         DataSystem.SavePlayer(this);

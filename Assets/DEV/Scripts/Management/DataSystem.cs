@@ -32,5 +32,18 @@ public static class DataSystem
             return null;
         }
     }
+    public static bool PlayerExist()
+    {
+        string path = Application.persistentDataPath + "/player.dwarvendefender";
+
+        if (File.Exists(path))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
 
 }
