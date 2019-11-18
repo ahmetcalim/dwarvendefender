@@ -13,10 +13,6 @@ public class Goblin : Mob
     public List<Material> materials;
     //Virtual voids
     
-    public override void Stagger()
-    {
-        base.Stagger();
-    }
     public override void TakeDamage(float damageAmount)
     {
         base.TakeDamage(damageAmount);
@@ -52,10 +48,5 @@ public class Goblin : Mob
     protected override void SetAgent(int state)
     {
         base.SetAgent(state);
-    }
-   
-    public override void Wait()
-    {
-        base.Wait();
     }
 }

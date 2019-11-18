@@ -13,12 +13,11 @@ public class Mob : NewAI
     public UnityEvent onTakeDamage;
     public UnityEvent onTalk;
     public float hitPoint;
-    public enum AttackType {RANGE, MELEE}
+    public enum AttackType {MELEE}
     public AttackType attackType;
-    public enum MobType {GOBLIN, ORC}
+    public enum MobType {GOBLIN, TROLL, FIRE}
     public MobType mobType;
     public bool lookAt;
-    public float range;
     public Transform root;
     public int attackVarCount;
     public Animator animator;
@@ -27,24 +26,20 @@ public class Mob : NewAI
     public bool dead;
     public bool sliced;
     public float DPS;
-    [HideInInspector] public bool attacking;
+    [HideInInspector]
+    public bool attacking;
     public ResourceManager resourceManager;
-    private bool staggerAnimationActive = true;
-    private bool fallAnimationActive = true;
-    //Attack per second variables
     private bool canMove = true;
     protected FX_FadeToGround faderToGround;
     public bool isDigger;
-    private bool doOnce;
-    public int sliceCount;
     public PuppetMaster puppet;
     public Transform target;
     public TMPro.TextMeshProUGUI healthDisplayer;
     public int hitCount;
     private float nextActionTime = 0.0f;
     public float period = 7f;
-
     public bool killedOnce;
+    public int cost;
     protected virtual void SetRequireComponents()
     {
         faderToGround = GetComponent<FX_FadeToGround>();
@@ -76,12 +71,9 @@ public class Mob : NewAI
         hitCount += 1;
         onTakeDamage.Invoke();
         hitPoint -= damageAmount;
-
         if (hitPoint <= 0)
         {
-           
             DestroySelf();
-            //Öldür
         }
     }
     IEnumerator Back()
@@ -179,28 +171,6 @@ public class Mob : NewAI
         if (dead || sliced) return;
         Look(target.transform.position);
         
-    }
-    public virtual void Stagger()
-    {
-        if (canMove)
-        {
-            canMove = false;
-            DeactivateNavMeshAgent();
-            if (animator)
-            {
-               //animator.SetTrigger("Stagger");
-            }
-           
-            StartCoroutine(ReactivateAnimation(staggerAnimationActive));
-        }
-      
-    }
-    public virtual void Wait()
-    {
-        DeactivateNavMeshAgent();
-        Stop();
-        animator.SetTrigger("Wait");
-        StopAttacking();
     }
     private IEnumerator ReactivateAnimation(bool animationActive)
     {

@@ -21,10 +21,4 @@ public class Shield : Hammer
         CollisionEnter(collision);
         ColEnter(collision);
     }
-    private void Start()
-    {
-        Skills[0] = FindObjectOfType<JudgementTrigger>();
-        Skills[1] = FindObjectOfType<Arbiter>();
-        StartCoroutine(SeekUpgrades(0.1f, 2));
-    }
 }

@@ -99,27 +99,7 @@ public class SwordStabController : MonoBehaviour
         Vector3 v = (tipCur - tipLast) / Time.deltaTime;
         a = Mathf.Abs(Vector3.Angle(tf, v));
         m = v.magnitude;
-        for (int i = 0; i < knifes.Count; i++)
-        {
-            if (a < StabAngleTolerance && m > tf.magnitude / SlashDisableForceMult && knifes[i].GetComponent<GenericBlade>().enabled)
-            {
-                for (int x = 0; x < knifes.Count; x++)
-                {
-                    knifes[x].GetComponent<GenericBlade>().enabled = false;
-                }
-
-            }
-            else if (a > StabAngleTolerance || m < tf.magnitude / SlashDisableForceMult)
-            {
-                for (int c = 0; c < knifes.Count; c++)
-                {
-                    if (!knifes[c].GetComponent<GenericBlade>().enabled && !clingJoint)
-                    {
-                        knifes[c].GetComponent<GenericBlade>().enabled = true;
-                    }
-                }
-            }
-        }
+       
     }
 
     public void SetStab()

@@ -66,14 +66,7 @@ public class AI : MonoBehaviour
     private void MoveCurrentTarget()
     {
         mobClass.StopAttacking();
-        if (mobClass.attackType == Mob.AttackType.RANGE)
-        {
-            mobClass.GetComponent<Archer>().MoveTowardsTarget(currentTarget);
-        }
-        else
-        {
-            mobClass.Move(currentTarget.position);
-        }
+        mobClass.Move(currentTarget.position);
     }
 
     private void Attack()
@@ -90,15 +83,8 @@ public class AI : MonoBehaviour
             }
         }
         mobClass.Look(currentTarget.position);
-        if (mobClass.attackType == Mob.AttackType.RANGE)
-        {
-            mobClass.GetComponent<Archer>().AttackPerSecond();
-        }
-        else
-        {
-            mobClass.Attack();
-        }
-       
+        mobClass.Attack();
+
     }
 
     public void FindTarget()

@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class ResourceHandler : MonoBehaviour
 {
-    public void GetResources()
+    public void WriteResources(CurrentPlayer player)
     {
-
+        DataSystem.SavePlayer(player);
     }
-    public void WriteResources()
+    public void AddResource(CurrentPlayer player, int resourceAmount)
     {
-
+        player.resource += resourceAmount;
+        WriteResources(player);
     }
 }

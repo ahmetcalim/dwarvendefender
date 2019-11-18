@@ -14,16 +14,6 @@ public class Hammer : Weapon
     private Rigidbody hitRigidbody;
     public Rigidbody ownRigidbody;
     private bool hitting;
-    private void Start()
-    {
-        if (isHammer)
-        {
-            Skills[0] = FindObjectOfType<ShatterCall>();
-            Skills[1] = FindObjectOfType<EclipseSlam>();
-            Skills[2] = GetComponent<ImpetusObject>();
-            StartCoroutine(SeekUpgrades(0.1f, 0));
-        }
-    }
     public virtual void ColEnter(Collision col)
     {
         if (col.gameObject.CompareTag("enemy"))

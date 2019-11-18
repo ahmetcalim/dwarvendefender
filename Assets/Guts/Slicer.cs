@@ -110,29 +110,7 @@ namespace NobleMuffins.LimbHacker.Guts
                                 }
                                 
                             }
-                            if (GetComponent<RetributionWave>())
-                            {
-                                other.GetComponentInParent<MobParent>().mob.TakeDamage(130f);
-                                if (other.GetComponentInParent<MobParent>().mob.hitPoint <= 0)
-                                {
-                                    other.GetComponentInParent<MobParent>().mob.dead = true;
-                                    other.GetComponentInParent<MobParent>().mob.onDeath.Invoke();
-
-                                    if (!other.GetComponentInParent<MobParent>().mob.killedOnce)
-                                    {
-                                        FindObjectOfType<ResourceManager>().AddKill(other.GetComponentInParent<MobParent>().mob);
-
-                                        other.GetComponentInParent<MobParent>().mob.killedOnce = true;
-                                        AchievementManager.Instance.CheckAchievements(new List<Achievement.AchievementType> { Achievement.AchievementType.Kill, Achievement.AchievementType.KillSlashingWeapon, Achievement.AchievementType.KillThrowingWeapon });
-                                        if (other.GetComponentInParent<MobParent>().mob.hitCount == 1)
-                                        {
-                                            AchievementManager.Instance.CheckAchievements(new List<Achievement.AchievementType> { Achievement.AchievementType.KnockDown });
-                                        }
-                                    }
-                                }
-                                Vector3 point = other.ClosestPointOnBounds(positionInWorldSpace);
-                                pendingSlices.Enqueue(new PendingSlice(point, sliceable));
-                            }
+                          
                         }
                         damaged = true;
                     }

@@ -75,7 +75,7 @@ public class EnemyMelee : Weapon
         {
             hitTarget = col.gameObject;
             if (hitTarget.GetComponent<Weapon>().EnemyWeapon) return; // If it is an enemy weapon, return.
-            if (GetComponentInParent<Mob>()) GetComponentInParent<Mob>().Stagger(); // If it is not an enemy weapon, stagger.
+
             return;
         }
         if (col.gameObject.GetComponentInChildren<PlayerHealthTracker>()) // If the target is a player:

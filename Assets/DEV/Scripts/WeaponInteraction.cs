@@ -28,7 +28,6 @@ public class WeaponInteraction : MonoBehaviour
             }
             yield return new WaitForSeconds(.1f);
             currentMob.animator.enabled = true;
-            currentMob.Stagger();
             yield return new WaitForSeconds(.5f);
             currentMob.navMeshAgent.enabled = true;
             if (currentMob.navMeshAgent.isOnNavMesh)

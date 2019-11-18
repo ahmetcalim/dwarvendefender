@@ -50,7 +50,7 @@ public class ResourceManager : MonoBehaviour
             Debug.Log("COMBOTRACKERYOK");
         }
         MobSpawn.killCount++;
-        AmountsEarned[0] += 1;
+        FindObjectOfType<ResourceHandler>().AddResource(FindObjectOfType<CurrentPlayer>(), mob.cost);
         
     }
 }

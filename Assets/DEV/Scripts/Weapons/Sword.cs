@@ -12,13 +12,4 @@ public class Sword : Weapon
     {
         CollisionEnter(collision);
     }
-
-    private void Start()
-    {
-        Skills[0] = FindObjectOfType<JudgementTrigger>();
-        Skills[2] = GetComponent<Drilled>();
-
-        StartCoroutine(SeekUpgrades(0.1f, 2));
-
-    }
 }
