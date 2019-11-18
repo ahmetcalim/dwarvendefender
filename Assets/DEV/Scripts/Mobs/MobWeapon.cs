@@ -12,29 +12,33 @@ public class MobWeapon : MonoBehaviour
 
         if (!damaged)
         {
-            if (!animator)
+            if (GetComponentInParent<MobParent>())
             {
-                animator = GetComponentInParent<MobParent>().mob.animator;
+                if (!animator)
+                {
+                    animator = GetComponentInParent<MobParent>().mob.animator;
 
+                }
+                if (animator.GetInteger("Attack") != 0)
+                {
+                    if (other.GetComponentInChildren<PlayerHealthTracker>())
+                    {
+                        damaged = true;
+                        other.GetComponentInChildren<PlayerHealthTracker>().TakeDamage(Damage);
+                    }
+                    if (other.GetComponent<Spire>())
+                    {
+                        damaged = true;
+                        other.GetComponent<Spire>().TakeDamage(Damage);
+                    }
+                    else if (other.GetComponentInParent<Spire>())
+                    {
+                        damaged = true;
+                        other.GetComponentInParent<Spire>().TakeDamage(Damage);
+                    }
+                }
             }
-            if (animator.GetInteger("Attack") != 0)
-            {
-                if (other.GetComponentInChildren<PlayerHealthTracker>())
-                {
-                    damaged = true;
-                    other.GetComponentInChildren<PlayerHealthTracker>().TakeDamage(Damage);
-                }
-                if (other.GetComponent<Spire>())
-                {
-                    damaged = true;
-                    other.GetComponent<Spire>().TakeDamage(Damage);
-                }
-                else if (other.GetComponentInParent<Spire>())
-                {
-                    damaged = true;
-                    other.GetComponentInParent<Spire>().TakeDamage(Damage);
-                }
-            }
+           
        
         }
 
