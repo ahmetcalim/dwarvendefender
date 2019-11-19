@@ -76,16 +76,6 @@ public class Mob : NewAI
             DestroySelf();
         }
     }
-    IEnumerator Back()
-    {
-        yield return new WaitForSeconds(.1f);
-     
-        ActivateNavMeshAgent();
-    }
-    void PlayAudio(List<AudioClip> audioClips)
-    {
-       // audioSource.PlayOneShot(audioClips[Random.Range(0, audioClips.Count)]);
-    }
     public virtual IEnumerator TakeDamageOverTime(float dPerSec, float t, float interval)
     {
         TakeDamage(dPerSec / interval);
@@ -112,7 +102,6 @@ public class Mob : NewAI
     }
     public virtual void DestroySelf()
     {
-        
         if (!dead)
         {
             onDeath.Invoke();
@@ -171,13 +160,6 @@ public class Mob : NewAI
         if (dead || sliced) return;
         Look(target.transform.position);
         
-    }
-    private IEnumerator ReactivateAnimation(bool animationActive)
-    {
-        
-        yield return new WaitForSeconds(1F);
-        canMove = true;
-        ActivateNavMeshAgent();
     }
     private IEnumerator FadeToGround()
     {
