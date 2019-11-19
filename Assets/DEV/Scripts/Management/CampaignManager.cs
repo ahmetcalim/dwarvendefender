@@ -129,19 +129,16 @@ public class CampaignManager : MonoBehaviour
     }
     public void EnterScene(Scene current, LoadSceneMode mode)
     {
-        if(current.buildIndex == 0) // if returning to menu:
+        if(current.buildIndex == 0)
         {
-            // Save the game
             SaveData mySave = new SaveData();
             mySave.GrabAndWrite("mysave");
-
-            // Find the map and update it.
-            GameObject mapObject = GameObject.Find("MapObject"); // find the map
+            
+            GameObject mapObject = GameObject.Find("MapObject");
           
             buttons = mapObject.GetComponentsInChildren<Button>();
-            //buttons.Sort((b1, b2) => b1.name.CompareTo(b2.name)); // sort by using actual black magic
 
-            for (int i = 0; i < buttons.Length; i++) // enable/disable and assign functions to buttons.
+            for (int i = 0; i < buttons.Length; i++)
             {
                 Debug.Log(InstanceUnlocked[i]);
                 if (InstanceUnlocked[i]) buttons[i].interactable = true;
@@ -153,8 +150,6 @@ public class CampaignManager : MonoBehaviour
         }
         else
         {
-            // Loading into an instance, find the spawner and pass it the active instance.
-            // StartCoroutine(SeekControllers());
             int i = 0;
             SteamObjectContainer.leftHandler.ChangeWeapon(_activeWeapons[0]);
             SteamObjectContainer.rigtHandler.ChangeWeapon(_activeWeapons[1]);
