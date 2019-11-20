@@ -145,25 +145,9 @@ public class Mob : NewAI
         }
         onAttack.Invoke();
     }
-    public virtual void AttackToSpire()
-    {
-        
-        if (dead || sliced) return;
-        Look(target.transform.position);
-        Debug.Log("spire a damage veriyor");
-        target.GetComponent<Spire>().TakeDamage(DPS);
-       
-      
-    }
-    public virtual void AttackToPlayer()
-    {
-        if (dead || sliced) return;
-        Look(target.transform.position);
-        
-    }
     private IEnumerator FadeToGround()
     {
-        yield return new WaitForSeconds(10);
+        yield return new WaitForSeconds(3f);
         DeactiveHipsColliders();
         faderToGround.Down = true;
         yield return new WaitForSeconds(3f);
@@ -254,12 +238,9 @@ public class Mob : NewAI
             {
                 if (navMeshAgent.isOnNavMesh)
                 {
-                    //Look(_TargetPos);
-
                     navMeshAgent.SetDestination(_TargetPos);
                 }
             }
-          
             ActivateNavMeshAgent();
         }
     }

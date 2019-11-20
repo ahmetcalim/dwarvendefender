@@ -29,14 +29,6 @@ public class Goblin : Mob
     {
         base.Attack();
     }
-    public override void AttackToPlayer()
-    {
-        base.AttackToPlayer();
-    }
-    public override void AttackToSpire()
-    {
-        base.AttackToSpire();
-    }
     protected override void ActivateNavMeshAgent()
     {
         base.ActivateNavMeshAgent();
