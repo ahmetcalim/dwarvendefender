@@ -19,7 +19,7 @@ namespace Valve.VR.InteractionSystem
 		public bool repositionGameObject = true;
 		public bool maintainMomemntum = true;
 		public float momemtumDampenRate = 5.0f;
-        
+
         protected Hand.AttachmentFlags attachmentFlags = Hand.AttachmentFlags.DetachFromOtherHand;
 
         protected float initialMappingOffset;
@@ -58,20 +58,31 @@ namespace Valve.VR.InteractionSystem
 			}
 		}
 
-        public void HandHoverUpdate(Fingery finger )
+        protected virtual void HandHoverUpdate( Hand hand )
         {
-            
-            
-                initialMappingOffset = linearMapping.value - CalculateLinearMapping(finger.transform );
+            GrabTypes startingGrabType = hand.GetGrabStarting();
+
+            if (interactable.attachedToHand == null && startingGrabType != GrabTypes.None)
+            {
+                initialMappingOffset = linearMapping.value - CalculateLinearMapping( hand.transform );
 				sampleCount = 0;
 				mappingChangeRate = 0.0f;
 
-              
-            
+                hand.AttachObject(gameObject, startingGrabType, attachmentFlags);
+            }
 		}
 
-        
-        public void OnDetachedFromHand(Fingery hand)
+        protected virtual void HandAttachedUpdate(Hand hand)
+        {
+            UpdateLinearMapping(hand.transform);
+
+            if (hand.IsGrabEnding(this.gameObject))
+            {
+                hand.DetachObject(gameObject);
+            }
+        }
+
+        protected virtual void OnDetachedFromHand(Hand hand)
         {
             CalculateMappingChangeRate();
         }
@@ -117,7 +128,7 @@ namespace Valve.VR.InteractionSystem
 			return Vector3.Dot( displacement, direction ) / length;
 		}
 
-        
+
 		protected virtual void Update()
         {
             if ( maintainMomemntum && mappingChangeRate != 0.0f )

@@ -25,7 +25,8 @@ public class NewAI : MonoBehaviour
     RaycastHit hit;
     public int percentageOfBeingRunner;
     public int percentageOfBeingChampion;
-
+    public enum AIState {SELECTING_TARGET, FINDING_TARGET, FOUND_TARGET, SPIRE_IS_MY_TARGET, PLAYER_IS_MY_TARGET, MOVING_TOWARDS_TARGET, STOPPED, ATTACKING}
+    public AIState state;
     private void Start()
     {
         if (!mobClass)
@@ -39,6 +40,7 @@ public class NewAI : MonoBehaviour
         player = Camera.main.transform;
         spire = FindObjectOfType<Spire>().transform;
         mobSpawn = FindObjectOfType<MobSpawn>();
+        state = AIState.SELECTING_TARGET;
         SetDefaultTarget();
         StartCoroutine(RoutineUpdate());
     }
@@ -108,11 +110,13 @@ public class NewAI : MonoBehaviour
                 attackPoint = player.parent.GetComponentInChildren<AttackPoints>().SetAttackPoint();
                 target = attackPoint.transform;
                 targetType = _targetType;
+                state = AIState.PLAYER_IS_MY_TARGET;
                 break;
             case Target.Spire:
                 attackPoint = spire.GetComponentInChildren<AttackPoints>().SetAttackPoint();
                 target = attackPoint.transform;
                 targetType = _targetType;
+                state = AIState.SPIRE_IS_MY_TARGET;
                 break;
             default:
                 break;

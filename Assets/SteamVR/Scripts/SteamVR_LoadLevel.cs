@@ -1,4 +1,4 @@
-//======= Copyright (c) Valve Corporation, All rights reserved. ===============
+﻿//======= Copyright (c) Valve Corporation, All rights reserved. ===============
 //
 // Purpose: Helper for smoothing over transitions between levels.
 //
@@ -25,7 +25,7 @@ namespace Valve.VR
         }
 
         // Name of level to load.
-        public int levelID;
+        public string levelName;
 
         // Name of internal process to launch (instead of levelName).
         public string internalProcessPath;
@@ -98,23 +98,20 @@ namespace Valve.VR
 
         public void Trigger()
         {
-            if (!loading )
+            if (!loading && !string.IsNullOrEmpty(levelName))
                 StartCoroutine(LoadLevel());
         }
 
         // Helper function to quickly and simply load a level from script.
-        public void Begin(int levelID)
+        public static void Begin(string levelName,
+            bool showGrid = false, float fadeOutTime = 0.5f,
+            float r = 0.0f, float g = 0.0f, float b = 0.0f, float a = 1.0f)
         {
             var loader = new GameObject("loader").AddComponent<SteamVR_LoadLevel>();
-            loader.levelID = levelID;
-            loader.loadingScreen = this.loadingScreen;
-
-            loader.loadingScreenWidthInMeters = this.loadingScreenWidthInMeters;
-            loader.progressBarWidthInMeters = this.progressBarWidthInMeters;
-            loader.loadingScreenDistance = this.loadingScreenDistance;
-            loader.showGrid = false;
-            loader.fadeOutTime = this.fadeOutTime;
-            loader.backgroundColor = this.backgroundColor;
+            loader.levelName = levelName;
+            loader.showGrid = showGrid;
+            loader.fadeOutTime = fadeOutTime;
+            loader.backgroundColor = new Color(r, g, b, a);
             loader.Trigger();
         }
 
@@ -364,7 +361,7 @@ namespace Valve.VR
                 if (loadAsync)
                 {
                     Application.backgroundLoadingPriority = ThreadPriority.Low;
-                    async = UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(levelID, mode);
+                    async = UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(levelName, mode);
 
                     // Performing this in a while loop instead seems to help smooth things out.
                     //yield return async;
@@ -375,7 +372,7 @@ namespace Valve.VR
                 }
                 else
                 {
-                    UnityEngine.SceneManagement.SceneManager.LoadScene(levelID, mode);
+                    UnityEngine.SceneManagement.SceneManager.LoadScene(levelName, mode);
                 }
             }
 

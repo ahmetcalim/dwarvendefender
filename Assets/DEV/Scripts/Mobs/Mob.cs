@@ -125,18 +125,22 @@ public class Mob : NewAI
     public virtual void Attack()
     {
         if (attackType != AttackType.MELEE) return;
-        attacking = true;
        
         Stop();
-        if (targetType == Target.Player)
+        if (!attacking)
         {
+            attacking = true;
+            if (targetType == Target.Player)
+            {
 
-            Look(FindObjectOfType<PlayerHealthTracker>().transform.position);
+                Look(FindObjectOfType<PlayerHealthTracker>().transform.position);
+            }
+            else
+            {
+                Look(FindObjectOfType<Spire>().transform.position);
+            }
         }
-        else
-        {
-            Look(FindObjectOfType<Spire>().transform.position);
-        }
+     
         if (animator)
         { 
             animator.SetBool("Run", false);
@@ -232,6 +236,7 @@ public class Mob : NewAI
             if (animator)
             {
                 animator.SetBool("Run", true);
+                state = AIState.MOVING_TOWARDS_TARGET;
             }
             
             if (navMeshAgent)

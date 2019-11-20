@@ -125,7 +125,7 @@ public class CampaignManager : MonoBehaviour
     {
         // Fade out here.
         Time.timeScale = 1;
-        loadLevel.Begin(id);
+       // loadLevel.Begin(id);
     }
     public void EnterScene(Scene current, LoadSceneMode mode)
     {

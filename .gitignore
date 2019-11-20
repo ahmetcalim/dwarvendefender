@@ -91,3 +91,5 @@ crashlytics-build.properties
 *.dll
 *.ttf
 *.flare
+*.assets
+*.resS
