@@ -48,7 +48,7 @@ public class Item : MonoBehaviour
                 case StoreState.NOT_AVAILABLE:
                     LogState(Color.red);
                     purchaseBtn.enabled = false;
-                    costText.text = " Not Enough Resource";
+                    costText.text = cost + " Not Enough Resource";
                     CheckCost();
                     break;
                 default:

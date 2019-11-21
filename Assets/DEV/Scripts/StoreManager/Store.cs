@@ -22,6 +22,7 @@ public class Store : MonoBehaviour
         player.weapons[item.wIndex] = 1;
         player.resource -= item.cost;
         item.storeState = Item.StoreState.PURCHASED;
+        
         player.SavePlayer();
     }
 }
