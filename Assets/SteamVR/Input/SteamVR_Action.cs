@@ -670,8 +670,8 @@ namespace Valve.VR
             return fullPath.Substring(0, count);
         }
 
-        private static string inLowered = "IN".ToLower(System.Globalization.CultureInfo.CurrentCulture);
-        private static string outLowered = "OUT".ToLower(System.Globalization.CultureInfo.CurrentCulture);
+        private static string inLowered = "in".ToLower(System.Globalization.CultureInfo.CurrentCulture);
+        private static string outLowered = "out".ToLower(System.Globalization.CultureInfo.CurrentCulture);
 
         private SteamVR_ActionDirections GetActionDirection()
         {

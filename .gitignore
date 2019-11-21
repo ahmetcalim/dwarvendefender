@@ -93,3 +93,11 @@ crashlytics-build.properties
 *.flare
 *.assets
 *.resS
+*.config
+*.map
+*.config
+*.map
+*.ini
+*.vrmanifest
+mysave
+unityProject.vrmanifest
