@@ -8,14 +8,14 @@ public class LookAtChecker : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            FindObjectOfType<AimScript>().rotate = false;
+          //  FindObjectOfType<AimScript>().rotate = false;
         }
     }
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            FindObjectOfType<AimScript>().rotate = true;
+            //FindObjectOfType<AimScript>().rotate = true;
         }
     }
 }

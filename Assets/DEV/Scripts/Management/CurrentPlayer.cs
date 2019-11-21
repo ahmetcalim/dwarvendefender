@@ -24,8 +24,8 @@ public class CurrentPlayer : MonoBehaviour
     {
         unlockedLevels = 1;
         resource = 0;
-        orbs = new int[8];
-        weapons = new int[8];
+        orbs = new int[16];
+        weapons = new int[16];
         for (int i = 0; i < orbs.Length; i++)
         {
             orbs[i] = 0;
