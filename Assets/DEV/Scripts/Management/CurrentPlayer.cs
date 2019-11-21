@@ -9,7 +9,7 @@ public class CurrentPlayer : MonoBehaviour
     public int[] orbs;
     public int[] weapons;
 
-    private void Start()
+    private void Awake()
     {
         if (DataSystem.PlayerExist())
         {
